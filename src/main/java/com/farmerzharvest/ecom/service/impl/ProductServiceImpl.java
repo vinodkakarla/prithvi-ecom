@@ -5,12 +5,13 @@ import com.farmerzharvest.ecom.entitymapper.ProductResponseMapper;
 import com.farmerzharvest.ecom.model.product.Product;
 import com.farmerzharvest.ecom.repository.ProductRepository;
 import com.farmerzharvest.ecom.service.ProductService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import javax.annotation.PostConstruct;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
@@ -30,6 +31,14 @@ public class ProductServiceImpl implements ProductService {
     return products.stream()
         .map(mapperFunction::apply)
         .collect(Collectors.toList());
+  }
+
+  @Override
+  public List<ProductResponse> getProductsByCategrory(String categoryName) {
+    List<Product> products = productRepository.findAllByCategory_categoryName(categoryName);
+    return products.stream()
+            .map(mapperFunction::apply)
+            .collect(Collectors.toList());
   }
 
   public ProductResponse getProduct(Long productId) {
