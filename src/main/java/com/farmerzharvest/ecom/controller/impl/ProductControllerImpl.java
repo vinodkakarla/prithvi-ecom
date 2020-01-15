@@ -28,10 +28,10 @@ public class ProductControllerImpl implements ProductController {
     return productService.getProduct(productId);
   }
 
-  @GetMapping("by-category/{category}")
+  @GetMapping("by-category/{categoryId}")
   @Override
-  public List<ProductResponse> getProduct(@PathVariable String category) {
-    return productService.getProductsByCategrory(category);
+  public List<ProductResponse> getProduct(@PathVariable int categoryId) {
+    return productService.getProductsByCategrory(categoryId);
   }
 
 }

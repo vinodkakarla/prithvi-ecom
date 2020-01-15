@@ -24,3 +24,4 @@ public class Product extends BaseEntity {
   @JoinColumn(name = "product_unit_id")
   private ProductUnits productUnits;
 }
+
