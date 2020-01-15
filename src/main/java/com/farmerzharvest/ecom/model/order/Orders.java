@@ -1,17 +1,14 @@
 package com.farmerzharvest.ecom.model.order;
 
 import com.farmerzharvest.ecom.model.BaseEntity;
-import com.farmerzharvest.ecom.model.accounts.Account;
 import com.farmerzharvest.ecom.model.accounts.AccountAddress;
-import java.time.LocalDateTime;
-import java.util.List;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import com.farmerzharvest.ecom.model.accounts.User;
 import lombok.Getter;
 import lombok.Setter;
+
+import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Getter
@@ -23,7 +20,7 @@ public class Orders extends BaseEntity {
 
   @ManyToOne
   @JoinColumn(name = "account_id")
-  private Account account;
+  private User account;
 
   @ManyToOne
   @JoinColumn(name = "address_id")

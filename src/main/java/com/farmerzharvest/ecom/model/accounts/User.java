@@ -1,6 +1,7 @@
-package com.farmerzharvest.ecom.model;
+package com.farmerzharvest.ecom.model.accounts;
 
-import com.farmerzharvest.ecom.model.audit.DateAudit;
+import com.farmerzharvest.ecom.model.Role;
+import com.farmerzharvest.ecom.model.audit.UserDateAudit;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
@@ -11,39 +12,50 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
+ *
  */
 
 @Entity
-@Table(name = "users", uniqueConstraints = {
+@Table(name = "accounts", uniqueConstraints = {
         @UniqueConstraint(columnNames = {
-            "username"
+                "username"
         }),
         @UniqueConstraint(columnNames = {
-            "email"
+                "email"
         })
 })
-public class User extends DateAudit {
+public class User extends UserDateAudit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
-    @Size(max = 40)
-    private String name;
+//    @NotBlank
+//    @Size(max = 40)
+//    private String name;
+
+    //    @NotBlank
+//    @Size(max = 40)
+    private String firstName;
+
+    //    @NotBlank
+//    @Size(max = 40)
+    private String lastName;
 
     @NotBlank
-    @Size(max = 15)
+    @Size(max = 255)
     private String username;
 
     @NaturalId
     @NotBlank
-    @Size(max = 40)
+    @Size(max = 255)
     @Email
     private String email;
 
     @NotBlank
     @Size(max = 100)
     private String password;
+
+    private String phoneNumber;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_roles",
@@ -55,8 +67,9 @@ public class User extends DateAudit {
 
     }
 
-    public User(String name, String username, String email, String password) {
-        this.name = name;
+    public User(String firstName, String lastName, String username, String email, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.username = username;
         this.email = email;
         this.password = password;
@@ -78,12 +91,20 @@ public class User extends DateAudit {
         this.username = username;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -100,6 +121,14 @@ public class User extends DateAudit {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public Set<Role> getRoles() {

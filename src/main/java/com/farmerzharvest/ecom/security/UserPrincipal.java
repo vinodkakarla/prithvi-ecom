@@ -1,6 +1,6 @@
 package com.farmerzharvest.ecom.security;
 
-import com.farmerzharvest.ecom.model.User;
+import com.farmerzharvest.ecom.model.accounts.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -42,7 +42,7 @@ public class UserPrincipal implements UserDetails {
 
         return new UserPrincipal(
                 user.getId(),
-                user.getName(),
+                user.getFirstName(),
                 user.getUsername(),
                 user.getEmail(),
                 user.getPassword(),

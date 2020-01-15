@@ -4,7 +4,7 @@ import com.farmerzharvest.ecom.dto.UserIdentityAvailability;
 import com.farmerzharvest.ecom.dto.UserProfile;
 import com.farmerzharvest.ecom.dto.UserSummary;
 import com.farmerzharvest.ecom.exception.ResourceNotFoundException;
-import com.farmerzharvest.ecom.model.User;
+import com.farmerzharvest.ecom.model.accounts.User;
 import com.farmerzharvest.ecom.repository.UserRepository;
 import com.farmerzharvest.ecom.security.CurrentUser;
 import com.farmerzharvest.ecom.security.UserPrincipal;
@@ -16,12 +16,12 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
-public class UserController {
+public class AccountController {
 
     @Autowired
     private UserRepository userRepository;
 
-    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+    private static final Logger logger = LoggerFactory.getLogger(AccountController.class);
 
     @GetMapping("/user/me")
     @PreAuthorize("hasRole('USER')")
@@ -42,13 +42,11 @@ public class UserController {
         return new UserIdentityAvailability(isAvailable);
     }
 
-    @GetMapping("/users/{username}")
-    public UserProfile getUserProfile(@PathVariable(value = "username") String username) {
-        User user = userRepository.findByUsername(username)
-                .orElseThrow(() -> new ResourceNotFoundException("User", "username", username));
-
-        UserProfile userProfile = new UserProfile(user.getId(), user.getUsername(), user.getName(), user.getCreatedAt());
-
+    @GetMapping("/users/{email}")
+    public UserProfile getUserProfile(@PathVariable(value = "email") String email) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new ResourceNotFoundException("User", "email", email));
+        UserProfile userProfile = new UserProfile(user.getId(), user.getUsername(), user.getFirstName(), user.getCreatedAt());
         return userProfile;
     }
 

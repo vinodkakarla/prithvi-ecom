@@ -92,10 +92,7 @@ INSERT INTO `inventory` (`id`, `product_id`, `total_quantity`, `unit_price`, `is
 INSERT INTO `inventory` (`id`, `product_id`, `total_quantity`, `unit_price`, `is_active`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES ('5', '5', '150', '50.00', TRUE, '2019-11-21 09:35:35', '1', '2019-11-21 09:35:35', '1');
 
 
-INSERT INTO `account` (`id`, `first_name`, `last_name`, `email`, `phone_number`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES ('1', 'Super', 'Admin', 'prithvifarms@gmail.com', '9703684024', '2019-11-21 09:17:11', NULL, '2019-11-21 09:17:11', NULL);
-INSERT INTO `account` (`id`, `first_name`, `last_name`, `email`, `phone_number`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES ('3', 'Kishore', 'Konda', 'kishorefx@gmail.com', '9703684024', '2019-11-21 09:19:42', '1', '2019-11-21 09:19:42', '1');
-
-INSERT INTO `account_address` (`id`, `account_id`, `address_line1`, `address_line2`, `city`, `state`, `pin_code`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES ('1', '3', 'C/o Sha Manyu Global School', 'Aparna Hillpark Rd, KSR Enclave, Chanda Nagar', 'Hyderabad', 'Telangana', '500050', '2019-11-21 09:50:14', '1', '2019-11-21 09:50:14', '1');
-
-INSERT INTO `account_cred` (`id`, `account_id`, `encrypted_password`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES ('1', '1', 'admin', '2019-11-21 09:44:16', '1', '2019-11-21 09:44:16', '1');
-INSERT INTO `account_cred` (`id`, `account_id`, `encrypted_password`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES ('2', '3', 'admin', '2019-11-21 09:44:16', '1', '2019-11-21 09:44:16', '1');
+--INSERT INTO `accounts` (`id`, `first_name`, `last_name`, `email`, `phone_number`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES ('1', 'Super', 'Admin', 'prithvifarms@gmail.com', '9703684024', '2019-11-21 09:17:11', NULL, '2019-11-21 09:17:11', NULL);
+--INSERT INTO `accounts` (`id`, `first_name`, `last_name`, `email`, `phone_number`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES ('3', 'Kishore', 'Konda', 'kishorefx@gmail.com', '9703684024', '2019-11-21 09:19:42', '1', '2019-11-21 09:19:42', '1');
+--
+--INSERT INTO `account_address` (`id`, `account_id`, `address_line1`, `address_line2`, `city`, `state`, `pin_code`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES ('1', '3', 'C/o Sha Manyu Global School', 'Aparna Hillpark Rd, KSR Enclave, Chanda Nagar', 'Hyderabad', 'Telangana', '500050', '2019-11-21 09:50:14', '1', '2019-11-21 09:50:14', '1');

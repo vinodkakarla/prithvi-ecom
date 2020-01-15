@@ -1,7 +1,7 @@
 package com.farmerzharvest.ecom.security;
 
 import com.farmerzharvest.ecom.exception.ResourceNotFoundException;
-import com.farmerzharvest.ecom.model.User;
+import com.farmerzharvest.ecom.model.accounts.User;
 import com.farmerzharvest.ecom.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
