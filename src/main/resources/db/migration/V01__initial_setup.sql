@@ -113,6 +113,7 @@ CREATE TABLE `product` (
   `updated_by` bigint(20) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
   `image_url` varchar(255) DEFAULT NULL,
+  `is_active` bit(1) NOT NULL DEFAULT 1,
   `name` varchar(255) DEFAULT NULL,
   `category_id` bigint(20) DEFAULT NULL,
   `product_unit_id` bigint(20) DEFAULT NULL,
@@ -132,7 +133,7 @@ CREATE TABLE `inventory` (
   `updated_by` bigint(20) DEFAULT NULL,
   `is_active` bit(1) NOT NULL,
   `total_quantity` bigint(20) DEFAULT NULL,
-  `unit_price` double DEFAULT NULL,
+  `unit_price` float NOT NULL,
   `product_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKp7gj4l80fx8v0uap3b2crjwp5` (`product_id`),
@@ -150,14 +151,14 @@ CREATE TABLE `orders` (
   `updated_at` datetime DEFAULT NULL,
   `updated_by` bigint(20) DEFAULT NULL,
   `order_date` datetime DEFAULT NULL,
-  `total_amount` double DEFAULT NULL,
+  `total_amount` float NOT NULL,
   `account_id` bigint(20) DEFAULT NULL,
   `address_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `FK3c7gbsfawn58r27cf5b2km72f` (`account_id`),
+  KEY `FKagh5svlor3slbay6tq5wqor1o` (`account_id`),
   KEY `FK5dcb6sm74kwspq429nadhu21y` (`address_id`),
-  CONSTRAINT `FK3c7gbsfawn58r27cf5b2km72f` FOREIGN KEY (`account_id`) REFERENCES `accounts` (`id`),
-  CONSTRAINT `FK5dcb6sm74kwspq429nadhu21y` FOREIGN KEY (`address_id`) REFERENCES `account_address` (`id`)
+  CONSTRAINT `FK5dcb6sm74kwspq429nadhu21y` FOREIGN KEY (`address_id`) REFERENCES `account_address` (`id`),
+  CONSTRAINT `FKagh5svlor3slbay6tq5wqor1o` FOREIGN KEY (`account_id`) REFERENCES `accounts` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -168,13 +169,18 @@ CREATE TABLE `order_details` (
   `created_by` bigint(20) DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `updated_by` bigint(20) DEFAULT NULL,
+  `price_per_unit` float NOT NULL,
+  `total_unit_amount` float NOT NULL,
+  `unit_quantity` smallint(6) NOT NULL,
   `order_id` bigint(20) DEFAULT NULL,
-  `price_per_unit` double DEFAULT NULL,
   `product_id` bigint(20) DEFAULT NULL,
-  `total_amount` double DEFAULT NULL,
-  `units` bigint(20) DEFAULT NULL,
+  `unit_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKjyu2qbqt8gnvno9oe9j2s2ldk` (`order_id`),
+  KEY `FKinivj2k1370kw224lavkm3rqm` (`product_id`),
+  KEY `FK7wt7nd46s9h7rn8b2dcgqdqw0` (`unit_id`),
+  CONSTRAINT `FK7wt7nd46s9h7rn8b2dcgqdqw0` FOREIGN KEY (`unit_id`) REFERENCES `product_units` (`id`),
+  CONSTRAINT `FKinivj2k1370kw224lavkm3rqm` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`),
   CONSTRAINT `FKjyu2qbqt8gnvno9oe9j2s2ldk` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

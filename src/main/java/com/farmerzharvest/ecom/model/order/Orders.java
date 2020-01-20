@@ -26,7 +26,7 @@ public class Orders extends BaseEntity {
   @JoinColumn(name = "address_id")
   private AccountAddress accountAddress;
 
-  private Double totalAmount;
+  private float totalAmount;
   private LocalDateTime orderDate;
 
   @OneToMany(mappedBy = "orderId")

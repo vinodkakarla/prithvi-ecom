@@ -5,6 +5,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Collection;
+import java.util.Set;
+
 @Getter
 @Setter
 @Builder
@@ -14,18 +17,18 @@ public class ProductResponse {
   private String name;
   private String description;
   private String imageUrl;
-  private ProductDetail productDetail;
+  private String category;
+  private Long totalQuantity;
+  private boolean isActive;
+  private Collection<UnitDetail> unitDetails;
 
   @Setter
   @Getter
   @Builder
-  public static class ProductDetail {
-    private String category;
+  public static class UnitDetail {
     private String unitType;
     private Long unitQuantity;
-    private Double pricePerUnit;
-    private Long totalQuantity;
-    private boolean isActive;
+    private float pricePerUnit;
   }
 }
 

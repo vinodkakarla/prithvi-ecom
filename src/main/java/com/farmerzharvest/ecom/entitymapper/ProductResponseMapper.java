@@ -2,28 +2,38 @@ package com.farmerzharvest.ecom.entitymapper;
 
 import com.farmerzharvest.ecom.dto.ProductResponse;
 import com.farmerzharvest.ecom.model.product.Product;
+import com.farmerzharvest.ecom.model.product.ProductUnitPrice;
+import com.google.common.collect.Lists;
+
+import java.util.Collection;
 import java.util.function.Function;
 
 public class ProductResponseMapper implements Function<Product, ProductResponse> {
 
-  public ProductResponse apply(Product product) {
-    ProductResponse.ProductResponseBuilder builder = ProductResponse.builder()
-        .id(product.getId())
-        .description(product.getDescription())
-        .name(product.getName())
-        .imageUrl(product.getImageUrl());
+    public ProductResponse apply(Product product) {
+        ProductResponse.ProductResponseBuilder builder = ProductResponse.builder()
+                .id(product.getId())
+                .description(product.getDescription())
+                .name(product.getName())
+                .imageUrl(product.getImageUrl())
+                .category(product.getCategory().getCategoryName())
+                .isActive(product.isActive());
 
-    if (product.getProductUnits() != null) {
-      ProductResponse.ProductDetail productDetail
-          = ProductResponse.ProductDetail.builder()
-          .category(product.getCategory().getCategoryName())
-          .unitQuantity(product.getProductUnits().getUnitQuantity())
-          .unitType(product.getProductUnits().getUnitType())
-          .build();
+        Collection<ProductResponse.UnitDetail> unitDetails = Lists.newArrayList();
 
-      builder.productDetail(productDetail);
+        if (product.getProductUnits() != null) {
+            for (ProductUnitPrice productUnit : product.getProductUnits()) {
+                ProductResponse.UnitDetail unitDetail = ProductResponse.UnitDetail.builder()
+                        .unitQuantity(productUnit.getProductUnit().getUnitQuantity())
+                        .unitType(productUnit.getProductUnit().getUnitType())
+                        .pricePerUnit(productUnit.getUnitPrice())
+                        .build();
+                unitDetails.add(unitDetail);
+            }
+
+            builder.unitDetails(unitDetails);
+        }
+
+        return builder.build();
     }
-
-    return builder.build();
-  }
 }

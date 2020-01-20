@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Getter
@@ -16,12 +17,13 @@ public class Product extends BaseEntity {
   private String name;
   private String description;
   private String imageUrl;
+  private boolean isActive;
   @OneToOne
   @JoinColumn(name = "category_id")
   private Category category;
 
-  @ManyToOne
-  @JoinColumn(name = "product_unit_id")
-  private ProductUnits productUnits;
+  @ManyToMany
+  @JoinColumn(name = "product_unit_price_id")
+  private Collection<ProductUnitPrice> productUnits;
 }
 

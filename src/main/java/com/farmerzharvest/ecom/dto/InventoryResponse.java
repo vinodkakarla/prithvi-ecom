@@ -24,7 +24,7 @@ public class InventoryResponse {
     private String productCategory;
     private String unitType;
     private Long minQuantity;
-    private Double unitPrice;
+    private float unitPrice;
     private Long totalAvailableUnits;
   }
 }

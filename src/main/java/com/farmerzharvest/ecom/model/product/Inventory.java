@@ -23,7 +23,7 @@ public class Inventory extends BaseEntity {
 
   private Long totalQuantity;
 
-  private Double unitPrice;
+  private float unitPrice;
 
   private boolean isActive;
 }
