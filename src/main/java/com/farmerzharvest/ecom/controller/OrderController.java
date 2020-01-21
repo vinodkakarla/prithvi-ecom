@@ -41,7 +41,7 @@ public class OrderController {
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    @GetMapping("/my-orders")
+    @GetMapping("/all-orders")
     public Collection<OrderResponse> getAllOrders() {
         return orderService.getAllOrders();
     }
