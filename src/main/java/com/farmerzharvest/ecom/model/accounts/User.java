@@ -29,16 +29,16 @@ public class User extends UserDateAudit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    @NotBlank
-//    @Size(max = 40)
-//    private String name;
+    //    @NotBlank
+    //    @Size(max = 40)
+    //    private String name;
 
     //    @NotBlank
-//    @Size(max = 40)
+    //    @Size(max = 40)
     private String firstName;
 
     //    @NotBlank
-//    @Size(max = 40)
+    //    @Size(max = 40)
     private String lastName;
 
     @NotBlank

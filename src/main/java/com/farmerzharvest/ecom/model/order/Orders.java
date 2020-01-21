@@ -15,22 +15,22 @@ import java.util.List;
 @Setter
 public class Orders extends BaseEntity {
 
-  @Id
-  private Long id;
+    @Id
+    private Long id;
 
-  @ManyToOne
-  @JoinColumn(name = "account_id")
-  private User account;
+    @ManyToOne
+    @JoinColumn(name = "account_id")
+    private User account;
 
-  @ManyToOne
-  @JoinColumn(name = "address_id")
-  private AccountAddress accountAddress;
+    @ManyToOne
+    @JoinColumn(name = "address_id")
+    private AccountAddress accountAddress;
 
-  private float totalAmount;
-  private LocalDateTime orderDate;
+    private float totalAmount;
+    private LocalDateTime orderDate;
 
-  @OneToMany(mappedBy = "orderId")
-  private List<OrderDetails> orderDetails;
+    @OneToMany(mappedBy = "orderId")
+    private List<OrderDetails> orderDetails;
 }
 
 

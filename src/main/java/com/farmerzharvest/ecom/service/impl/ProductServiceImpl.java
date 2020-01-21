@@ -17,36 +17,36 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
 
-  private final ProductRepository productRepository;
-  private ProductResponseMapper mapperFunction;
+    private final ProductRepository productRepository;
+    private ProductResponseMapper mapperFunction;
 
-  @PostConstruct
-  public void setup() {
-    mapperFunction = new ProductResponseMapper();
-  }
-
-
-  public List<ProductResponse> getProducts() {
-    List<Product> products = productRepository.findAll();
-    return products.stream()
-        .map(mapperFunction::apply)
-        .collect(Collectors.toList());
-  }
-
-  @Override
-  public List<ProductResponse> getProductsByCategrory(int categoryId) {
-    List<Product> products = productRepository.findAllByCategory_id((long)categoryId);
-    return products.stream()
-            .map(mapperFunction::apply)
-            .collect(Collectors.toList());
-  }
-
-  public ProductResponse getProduct(Long productId) {
-    Optional<Product> product = productRepository.findById(productId);
-    if (! product.isPresent()) {
-      throw new RuntimeException("No product with the given identifier");
+    @PostConstruct
+    public void setup() {
+        mapperFunction = new ProductResponseMapper();
     }
-    return  mapperFunction.apply(product.get());
-  }
+
+
+    public List<ProductResponse> getProducts() {
+        List<Product> products = productRepository.findAll();
+        return products.stream()
+                .map(mapperFunction::apply)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ProductResponse> getProductsByCategrory(int categoryId) {
+        List<Product> products = productRepository.findAllByCategory_id((long) categoryId);
+        return products.stream()
+                .map(mapperFunction::apply)
+                .collect(Collectors.toList());
+    }
+
+    public ProductResponse getProduct(Long productId) {
+        Optional<Product> product = productRepository.findById(productId);
+        if (!product.isPresent()) {
+            throw new RuntimeException("No product with the given identifier");
+        }
+        return mapperFunction.apply(product.get());
+    }
 
 }

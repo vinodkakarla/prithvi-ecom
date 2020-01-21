@@ -14,7 +14,7 @@ public class ProductUnitPrice extends BaseEntity {
     @Id
     private Long id;
     private float unitPrice;
-    @Column(nullable = false,columnDefinition = "boolean default true")
+    @Column(nullable = false, columnDefinition = "boolean default true")
     private boolean isActive;
 
     @OneToOne

@@ -9,4 +9,6 @@ public interface OrdersRepository extends JpaRepository<Orders, Long> {
 
     List<Orders> findAllByAccount_id(long id);
 
+    List<Orders> findAllByAccount_username(String username);
+
 }

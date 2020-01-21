@@ -18,15 +18,15 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api")
 public class AccountController {
 
+    private static final Logger logger = LoggerFactory.getLogger(AccountController.class);
     @Autowired
     private UserRepository userRepository;
-
-    private static final Logger logger = LoggerFactory.getLogger(AccountController.class);
 
     @GetMapping("/user/me")
     @PreAuthorize("hasRole('USER')")
     public UserSummary getCurrentUser(@CurrentUser UserPrincipal currentUser) {
-        UserSummary userSummary = new UserSummary(currentUser.getId(), currentUser.getUsername(), currentUser.getName());
+        UserSummary userSummary =
+                new UserSummary(currentUser.getId(), currentUser.getUsername(), currentUser.getName());
         return userSummary;
     }
 
@@ -46,7 +46,8 @@ public class AccountController {
     public UserProfile getUserProfile(@PathVariable(value = "email") String email) {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new ResourceNotFoundException("User", "email", email));
-        UserProfile userProfile = new UserProfile(user.getId(), user.getUsername(), user.getFirstName(), user.getCreatedAt());
+        UserProfile userProfile =
+                new UserProfile(user.getId(), user.getUsername(), user.getFirstName(), user.getCreatedAt());
         return userProfile;
     }
 

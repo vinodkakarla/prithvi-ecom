@@ -12,18 +12,18 @@ import java.util.Collection;
 @Setter
 public class Product extends BaseEntity {
 
-  @Id
-  private Long id;
-  private String name;
-  private String description;
-  private String imageUrl;
-  private boolean isActive;
-  @OneToOne
-  @JoinColumn(name = "category_id")
-  private Category category;
+    @Id
+    private Long id;
+    private String name;
+    private String description;
+    private String imageUrl;
+    private boolean isActive;
+    @OneToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 
-  @ManyToMany
-  @JoinColumn(name = "product_unit_price_id")
-  private Collection<ProductUnitPrice> productUnits;
+    @ManyToMany
+    @JoinColumn(name = "product_unit_price_id")
+    private Collection<ProductUnitPrice> productUnits;
 }
 

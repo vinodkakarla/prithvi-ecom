@@ -8,10 +8,10 @@ import java.util.List;
 
 public interface ProductController {
 
-  List<ProductResponse> getProducts();
+    List<ProductResponse> getProducts();
 
-  ProductResponse getProduct(Long productId);
+    ProductResponse getProduct(Long productId);
 
-  @GetMapping("/{categoryId}")
-  List<ProductResponse> getProduct(@PathVariable int categoryId);
+    @GetMapping("/{categoryId}")
+    List<ProductResponse> getProduct(@PathVariable int categoryId);
 }

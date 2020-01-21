@@ -5,9 +5,9 @@ import com.farmerzharvest.ecom.dto.ProductResponse;
 import java.util.List;
 
 public interface ProductService {
-  List<ProductResponse> getProducts();
+    List<ProductResponse> getProducts();
 
-  List<ProductResponse> getProductsByCategrory(int categoryId);
+    List<ProductResponse> getProductsByCategrory(int categoryId);
 
-  ProductResponse getProduct(Long productId);
+    ProductResponse getProduct(Long productId);
 }

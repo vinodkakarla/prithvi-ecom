@@ -11,10 +11,12 @@
 //  public static void main(String [] args) {
 //    String segmentName = "abc";
 //    String surveyQuestionSQL =
-//        "select distinct s1.question_pos, s1.question_text, s1.answer_pos, s1.answer_text, COALESCE(s2.count, 0) as answer_count, "
+//        "select distinct s1.question_pos, s1.question_text, s1.answer_pos, s1.answer_text, COALESCE(s2.count, 0) as
+//        answer_count, "
 //            + "${outer_segment} as segment_value "
 //            + "from umc_employer_surveys s1"
-//            + " LEFT  JOIN (select question_key, answer_key, sum(answer_count) AS count ${segmentName}, ${segment_name} as segment from "
+//            + " LEFT  JOIN (select question_key, answer_key, sum(answer_count) AS count ${segmentName},
+//            ${segment_name} as segment from "
 //            + " umc_survey_responses_agg"
 //            + " where employer_key = ${employerKey} and survey_key = ${surveyKey} "
 //            + " ${dynamicFilters} group by question_key, answer_key ${singleSegmentGroup} s2)"

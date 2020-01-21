@@ -10,21 +10,21 @@ import java.util.stream.Collectors;
 
 public class CategoryResponseMapper {
 
-  public CategoryResponse mapToCategoryResponse(List<Category> categoryList) {
-    if (!CollectionUtils.isEmpty(categoryList)) {
-      List<CategoryItem> items = categoryList.stream()
-          .map(this::buildCategoryItem)
-          .collect(Collectors.toList());
-      return new CategoryResponse(items);
+    public CategoryResponse mapToCategoryResponse(List<Category> categoryList) {
+        if (!CollectionUtils.isEmpty(categoryList)) {
+            List<CategoryItem> items = categoryList.stream()
+                    .map(this::buildCategoryItem)
+                    .collect(Collectors.toList());
+            return new CategoryResponse(items);
+        }
+        return new CategoryResponse();
     }
-    return new CategoryResponse();
-  }
 
-  private CategoryItem buildCategoryItem(Category category) {
-    return CategoryItem.builder()
-            .categoryId(category.getId())
-            .categoryName(category.getCategoryName())
-            .description(category.getDescription())
-            .build();
-  }
+    private CategoryItem buildCategoryItem(Category category) {
+        return CategoryItem.builder()
+                .categoryId(category.getId())
+                .categoryName(category.getCategoryName())
+                .description(category.getDescription())
+                .build();
+    }
 }

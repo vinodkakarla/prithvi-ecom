@@ -14,19 +14,19 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class CategoryServiceImpl implements CategoryService {
-  private final CategoryRepository categoryRepository;
+    private final CategoryRepository categoryRepository;
 
-  private CategoryResponseMapper categoryResponseMapper;
+    private CategoryResponseMapper categoryResponseMapper;
 
-  @PostConstruct
-  public void setup() {
-    categoryResponseMapper = new CategoryResponseMapper();
-  }
+    @PostConstruct
+    public void setup() {
+        categoryResponseMapper = new CategoryResponseMapper();
+    }
 
-  @Override
-  public CategoryResponse listCategories() {
+    @Override
+    public CategoryResponse listCategories() {
 
-      List<Category> categories = categoryRepository.findAll();
-      return categoryResponseMapper.mapToCategoryResponse(categories);
-  }
+        List<Category> categories = categoryRepository.findAll();
+        return categoryResponseMapper.mapToCategoryResponse(categories);
+    }
 }

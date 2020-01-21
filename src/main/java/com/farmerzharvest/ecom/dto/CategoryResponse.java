@@ -9,14 +9,14 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CategoryResponse {
-  private List<CategoryItem> categoryItems;
+    private List<CategoryItem> categoryItems;
 
-  @Getter
-  @Setter
-  @Builder
-  public static class CategoryItem {
-    private Long categoryId;
-    private String categoryName;
-    private String description;
-  }
+    @Getter
+    @Setter
+    @Builder
+    public static class CategoryItem {
+        private Long categoryId;
+        private String categoryName;
+        private String description;
+    }
 }

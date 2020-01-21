@@ -10,9 +10,9 @@ import java.util.Collection;
 @AllArgsConstructor
 @Builder
 public class OrderRequest {
+    Collection<OrderProductDetail> orderDetails;
     private long accountAddressId;
     private float totalAmount;
-    Collection<OrderProductDetail> orderDetails;
 
     @Getter
     @Setter

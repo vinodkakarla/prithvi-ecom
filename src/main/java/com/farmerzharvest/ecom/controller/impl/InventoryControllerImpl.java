@@ -17,13 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class InventoryControllerImpl implements InventoryController {
 
-  private final InventoryService inventoryService;
+    private final InventoryService inventoryService;
 
-  @GetMapping()
-  @Override
-  public InventoryResponse getInventory(@RequestParam(required = false) String categoryName) {
-    log.debug("Received request to get all inventory by category: {}", categoryName);
-    return inventoryService.getInventory(categoryName);
-  }
+    @GetMapping()
+    @Override
+    public InventoryResponse getInventory(@RequestParam(required = false) String categoryName) {
+        log.debug("Received request to get all inventory by category: {}", categoryName);
+        return inventoryService.getInventory(categoryName);
+    }
 }
 

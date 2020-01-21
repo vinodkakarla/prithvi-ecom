@@ -24,15 +24,14 @@ import java.util.Collection;
 @RolesAllowed({"USER", "ADMIN"})
 public class OrderController {
 
+    private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
     @Autowired
     private OrdersRepository ordersRepository;
     @Autowired
     private OrderService orderService;
 
-    private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
-
     @GetMapping("/{orderId}")
-    public OrderResponse getOrderInfo(@PathVariable(value = "orderId") String orderId) {
+    public OrderResponse getOrderInfo(@PathVariable(value = "orderId") long orderId) {
         return orderService.getOrderByOrderId(orderId);
     }
 
@@ -48,7 +47,8 @@ public class OrderController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<?> saveOrder(@Valid @RequestBody OrderRequest orderRequest, @CurrentUser UserPrincipal currentUser) {
+    public ResponseEntity<?> saveOrder(@Valid @RequestBody OrderRequest orderRequest,
+                                       @CurrentUser UserPrincipal currentUser) {
         Orders order = orderService.saveOrder(currentUser.getUsername(), orderRequest);
 
         if (order == null) {

@@ -12,6 +12,9 @@ import java.util.List;
 public class OrderResponseMapper {
 
     public OrderResponse mapOrderToResponse(Orders order) {
+        if (order == null) {
+            return null;
+        }
         OrderResponse response = OrderResponse.builder()
                 .accountAddressId(order.getAccountAddress().getId())
                 .orderAddress(getorderAddress(order.getAccountAddress()))
@@ -26,7 +29,7 @@ public class OrderResponseMapper {
 
     private Collection<OrderResponse.OrderProductDetail> getOrderProductDetails(Orders order) {
         List<OrderResponse.OrderProductDetail> orderProductDetails = Lists.newArrayList();
-        for(OrderDetails orderDetail: order.getOrderDetails()) {
+        for (OrderDetails orderDetail : order.getOrderDetails()) {
             OrderResponse.OrderProductDetail orderProductDetail = OrderResponse.OrderProductDetail.builder()
                     .productId(orderDetail.getProduct().getId())
                     .productName(orderDetail.getProduct().getName())
