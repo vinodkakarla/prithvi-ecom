@@ -17,6 +17,7 @@ public class ProductResponseMapper implements Function<Product, ProductResponse>
                 .name(product.getName())
                 .imageUrl(product.getImageUrl())
                 .category(product.getCategory().getCategoryName())
+                .totalQuantity(product.getInventory().getTotalQuantity())
                 .isActive(product.isActive());
 
         Collection<ProductResponse.UnitDetail> unitDetails = Lists.newArrayList();

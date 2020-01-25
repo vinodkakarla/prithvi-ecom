@@ -82,6 +82,7 @@ public class OrderServiceImpl implements OrderService {
                 () -> new ResourceNotFoundException("AccountAddress", "accountAddressId",
                         orderRequest.getAccountAddressId()));
         orders.setAccountAddress(address);
+        orders.setPickUp(orderRequest.getPickUp());
         orders.setTotalAmount(orderRequest.getTotalAmount());
 
         return orders;

@@ -13,6 +13,7 @@ public class OrderRequest {
     Collection<OrderProductDetail> orderDetails;
     private long accountAddressId;
     private float totalAmount;
+    private String pickUp;
 
     @Getter
     @Setter

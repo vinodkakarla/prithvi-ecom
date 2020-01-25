@@ -21,7 +21,7 @@ import java.util.Collection;
 
 @RestController
 @RequestMapping("/orders")
-@RolesAllowed({"USER", "ADMIN"})
+@RolesAllowed({"ROLE_USER", "ROLE_ADMIN"})
 public class OrderController {
 
     private static final Logger logger = LoggerFactory.getLogger(OrderController.class);

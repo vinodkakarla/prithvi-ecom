@@ -22,6 +22,10 @@ public class Product extends BaseEntity {
     @JoinColumn(name = "category_id")
     private Category category;
 
+    @OneToOne
+    @JoinColumn(name = "inventory_id")
+    private Inventory inventory;
+
     @ManyToMany
     @JoinColumn(name = "product_unit_price_id")
     private Collection<ProductUnitPrice> productUnits;

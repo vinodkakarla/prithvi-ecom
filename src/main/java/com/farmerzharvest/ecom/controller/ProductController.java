@@ -12,6 +12,9 @@ public interface ProductController {
 
     ProductResponse getProduct(Long productId);
 
-    @GetMapping("/{categoryId}")
+    @GetMapping("/by-category-id/{categoryId}")
     List<ProductResponse> getProduct(@PathVariable int categoryId);
+
+    @GetMapping("/by-category-name/{categoryId}")
+    List<ProductResponse> getProductByCategoryName(@PathVariable String categoryName);
 }

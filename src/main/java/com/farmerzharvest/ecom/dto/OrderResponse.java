@@ -15,6 +15,8 @@ public class OrderResponse {
     private String orderAddress;
     private long accountAddressId;
     private float totalAmount;
+    private String pickUp;
+    private String status;
     private Collection<OrderProductDetail> orderProductDetails;
 
     @Getter

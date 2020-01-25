@@ -25,5 +25,20 @@ public class InventoryControllerImpl implements InventoryController {
         log.debug("Received request to get all inventory by category: {}", categoryName);
         return inventoryService.getInventory(categoryName);
     }
+
+    @GetMapping("/by-category-id")
+    @Override
+    public InventoryResponse getInventoryByCategoryId(@RequestParam(required = true) Long categoryId) {
+        log.debug("Received request to get all inventory by category id: {}", categoryId);
+        return inventoryService.getInventoryByCategoryId(categoryId);
+    }
+
+    @GetMapping("/by-product-id")
+    @Override
+    public InventoryResponse getInventoryByProductId(@RequestParam(required = true) Long productId) {
+        log.debug("Received request to get all inventory by product id: {}", productId);
+        return inventoryService.getInventoryByProductId(productId);
+    }
+
 }
 

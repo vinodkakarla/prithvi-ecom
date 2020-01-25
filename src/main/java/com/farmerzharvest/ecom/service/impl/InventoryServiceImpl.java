@@ -25,13 +25,29 @@ public class InventoryServiceImpl implements InventoryService {
     }
 
     @Override
-    public InventoryResponse getInventory(String categoryName) {
+    public InventoryResponse getAllInventory() {
+        List<Inventory> inventories = inventoryRepository.findAll();
+        return inventoryResponseMapper.mapToProductResponse(inventories);
+    }
 
+    @Override
+    public InventoryResponse getInventory(String categoryName) {
         if (StringUtils.isEmpty(categoryName)) {
-            List<Inventory> inventories = inventoryRepository.findAll();
-            return inventoryResponseMapper.mapToProductResponse(inventories);
+            return getAllInventory();
         }
         List<Inventory> inventories = inventoryRepository.findAllByProduct_Category_categoryName(categoryName);
+        return inventoryResponseMapper.mapToProductResponse(inventories);
+    }
+
+    @Override
+    public InventoryResponse getInventoryByCategoryId(Long categoryId) {
+        List<Inventory> inventories = inventoryRepository.findAllByProduct_Category_id(categoryId);
+        return inventoryResponseMapper.mapToProductResponse(inventories);
+    }
+
+    @Override
+    public InventoryResponse getInventoryByProductId(Long productId) {
+        List<Inventory> inventories = inventoryRepository.findAllByProduct_id(productId);
         return inventoryResponseMapper.mapToProductResponse(inventories);
     }
 }

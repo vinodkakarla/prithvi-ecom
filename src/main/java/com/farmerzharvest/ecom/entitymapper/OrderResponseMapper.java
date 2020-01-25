@@ -21,6 +21,8 @@ public class OrderResponseMapper {
                 .userName(order.getAccount().getUsername())
                 .orderId(order.getId())
                 .totalAmount(order.getTotalAmount())
+                .status(order.getStatus())
+                .pickUp(order.getPickUp())
                 .orderProductDetails(getOrderProductDetails(order))
                 .build();
 

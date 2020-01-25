@@ -28,6 +28,8 @@ public class Orders extends BaseEntity {
 
     private float totalAmount;
     private LocalDateTime orderDate;
+    private String status;
+    private String pickUp;
 
     @OneToMany(mappedBy = "orderId")
     private List<OrderDetails> orderDetails;
