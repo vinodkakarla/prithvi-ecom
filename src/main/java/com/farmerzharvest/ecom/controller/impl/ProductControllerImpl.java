@@ -35,7 +35,7 @@ public class ProductControllerImpl implements ProductController {
         return productService.getProductsByCategoryId(categoryId);
     }
 
-    @GetMapping("/by-category-name/{categoryId}")
+    @GetMapping("/by-category-name/{categoryName}")
     @Override
     public List<ProductResponse> getProductByCategoryName(@PathVariable String categoryName) {
         return productService.getProductsByCategoryName(categoryName);

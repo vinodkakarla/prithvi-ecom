@@ -6,8 +6,8 @@ import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
 @Getter
@@ -18,7 +18,7 @@ public class Inventory extends BaseEntity {
     private Long id;
 
     @OneToOne
-    @JoinColumn(name = "product_id")
+    @PrimaryKeyJoinColumn
     private Product product;
 
     private Long totalQuantity;

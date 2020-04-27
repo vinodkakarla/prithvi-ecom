@@ -17,7 +17,7 @@ public class ProductUnitPrice extends BaseEntity {
     @Column(nullable = false, columnDefinition = "boolean default true")
     private boolean isActive;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
 

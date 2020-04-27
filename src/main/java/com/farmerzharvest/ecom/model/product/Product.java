@@ -26,8 +26,8 @@ public class Product extends BaseEntity {
     @JoinColumn(name = "inventory_id")
     private Inventory inventory;
 
-    @ManyToMany
-    @JoinColumn(name = "product_unit_price_id")
+    @OneToMany
+    @JoinColumn(name = "product_id")
     private Collection<ProductUnitPrice> productUnits;
 }
 

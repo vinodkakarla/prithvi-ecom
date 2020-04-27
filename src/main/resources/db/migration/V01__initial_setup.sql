@@ -16,11 +16,28 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+SET FOREIGN_KEY_CHECKS = 0;
+
+/************************************************************************/
+/* DROP ALL TABLEs */
+/************************************************************************/
+
+DROP TABLE IF EXISTS `roles`;
+DROP TABLE IF EXISTS `accounts`;
+DROP TABLE IF EXISTS `account_address`;
+DROP TABLE IF EXISTS `user_roles`;
+DROP TABLE IF EXISTS `category`;
+DROP TABLE IF EXISTS `product_units`;
+DROP TABLE IF EXISTS `product`;
+DROP TABLE IF EXISTS `product_unit_price`;
+DROP TABLE IF EXISTS `inventory`;
+DROP TABLE IF EXISTS `orders`;
+DROP TABLE IF EXISTS `order_details`;
+
 /************************************************************************/
 /* ACCOUNTS TABLE */
 /************************************************************************/
 
-DROP TABLE IF EXISTS `roles`;
 CREATE TABLE `roles` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(60) NOT NULL,
@@ -28,7 +45,6 @@ CREATE TABLE `roles` (
   UNIQUE KEY `uk_roles_name` (`name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `accounts`;
 CREATE TABLE `accounts` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `created_at` datetime DEFAULT NULL,
@@ -47,7 +63,6 @@ CREATE TABLE `accounts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-DROP TABLE IF EXISTS `account_address`;
 CREATE TABLE `account_address` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `created_at` datetime DEFAULT NULL,
@@ -65,7 +80,6 @@ CREATE TABLE `account_address` (
   CONSTRAINT `FKshgrb002krs0wl4e88yob94ty` FOREIGN KEY (`account_id`) REFERENCES `accounts` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `user_roles`;
 CREATE TABLE `user_roles` (
   `user_id` bigint(20) NOT NULL,
   `role_id` bigint(20) NOT NULL,
@@ -80,7 +94,6 @@ CREATE TABLE `user_roles` (
 /* PRITHVI PRODUCTS & INVENTORY TABLE */
 /************************************************************************/
 
-DROP TABLE IF EXISTS `category`;
 CREATE TABLE `category` (
   `id` bigint(20) NOT NULL,
   `created_at` datetime DEFAULT NULL,
@@ -92,7 +105,6 @@ CREATE TABLE `category` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `product_units`;
 CREATE TABLE `product_units` (
   `id` bigint(20) NOT NULL,
   `created_at` datetime DEFAULT NULL,
@@ -104,7 +116,6 @@ CREATE TABLE `product_units` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `product`;
 CREATE TABLE `product` (
   `id` bigint(20) NOT NULL,
   `created_at` datetime DEFAULT NULL,
@@ -116,15 +127,31 @@ CREATE TABLE `product` (
   `is_active` bit(1) NOT NULL DEFAULT 1,
   `name` varchar(255) DEFAULT NULL,
   `category_id` bigint(20) DEFAULT NULL,
-  `product_unit_id` bigint(20) DEFAULT NULL,
+  `inventory_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK1mtsbur82frn64de7balymq9s` (`category_id`),
-  KEY `FKtjty9sg1lew3fnyt43v2vx9ub` (`product_unit_id`),
+  KEY `FK470fbed1o05ss4aqy8b8i8r8b` (`inventory_id`),
   CONSTRAINT `FK1mtsbur82frn64de7balymq9s` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`),
-  CONSTRAINT `FKtjty9sg1lew3fnyt43v2vx9ub` FOREIGN KEY (`product_unit_id`) REFERENCES `product_units` (`id`)
+  CONSTRAINT `FK470fbed1o05ss4aqy8b8i8r8b` FOREIGN KEY (`inventory_id`) REFERENCES `inventory` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `inventory`;
+CREATE TABLE `product_unit_price` (
+  `id` bigint(20) NOT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `created_by` bigint(20) DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `updated_by` bigint(20) DEFAULT NULL,
+  `is_active` tinyint(1) NOT NULL DEFAULT '1',
+  `unit_price` float NOT NULL,
+  `product_id` bigint(20) DEFAULT NULL,
+  `product_unit_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK9ok6rknydkd59bqpya87xpani` (`product_id`),
+  KEY `FKfylpjekrj7ol4mhbgqtkywpy4` (`product_unit_id`),
+  CONSTRAINT `FK9ok6rknydkd59bqpya87xpani` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`),
+  CONSTRAINT `FKfylpjekrj7ol4mhbgqtkywpy4` FOREIGN KEY (`product_unit_id`) REFERENCES `product_units` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 CREATE TABLE `inventory` (
   `id` bigint(20) NOT NULL,
   `created_at` datetime DEFAULT NULL,
@@ -134,16 +161,12 @@ CREATE TABLE `inventory` (
   `is_active` bit(1) NOT NULL,
   `total_quantity` bigint(20) DEFAULT NULL,
   `unit_price` float NOT NULL,
-  `product_id` bigint(20) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FKp7gj4l80fx8v0uap3b2crjwp5` (`product_id`),
-  CONSTRAINT `FKp7gj4l80fx8v0uap3b2crjwp5` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /************************************************************************/
 /************************************************************************/
 
-DROP TABLE IF EXISTS `orders`;
 CREATE TABLE `orders` (
   `id` bigint(20) NOT NULL,
   `created_at` datetime DEFAULT NULL,
@@ -151,6 +174,8 @@ CREATE TABLE `orders` (
   `updated_at` datetime DEFAULT NULL,
   `updated_by` bigint(20) DEFAULT NULL,
   `order_date` datetime DEFAULT NULL,
+  `pick_up` varchar(255) DEFAULT NULL,
+  `status` varchar(255) DEFAULT 'InProgress',
   `total_amount` float NOT NULL,
   `account_id` bigint(20) DEFAULT NULL,
   `address_id` bigint(20) DEFAULT NULL,
@@ -162,7 +187,6 @@ CREATE TABLE `orders` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-DROP TABLE IF EXISTS `order_details`;
 CREATE TABLE `order_details` (
   `id` bigint(20) NOT NULL,
   `created_at` datetime DEFAULT NULL,
@@ -184,6 +208,8 @@ CREATE TABLE `order_details` (
   CONSTRAINT `FKjyu2qbqt8gnvno9oe9j2s2ldk` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+
+SET FOREIGN_KEY_CHECKS = 1;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
