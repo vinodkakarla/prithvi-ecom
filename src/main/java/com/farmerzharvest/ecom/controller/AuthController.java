@@ -107,16 +107,18 @@ public class AuthController {
 
         User result = userRepository.save(user);
 
-        AccountAddress address = AccountAddress.builder()
-                .account(result)
-                .addressLine1(signUpRequest.getAddress().getAddressLine1())
-                .addressLine2(signUpRequest.getAddress().getAddressLine2())
-                .city(signUpRequest.getAddress().getCity())
-                .state(signUpRequest.getAddress().getState())
-                .pinCode(signUpRequest.getAddress().getPinCode())
-                .build();
+        if (signUpRequest.getAddress() != null) {
+            AccountAddress address = AccountAddress.builder()
+                    .account(result)
+                    .addressLine1(signUpRequest.getAddress().getAddressLine1())
+                    .addressLine2(signUpRequest.getAddress().getAddressLine2())
+                    .city(signUpRequest.getAddress().getCity())
+                    .state(signUpRequest.getAddress().getState())
+                    .pinCode(signUpRequest.getAddress().getPinCode())
+                    .build();
 
-        addressRepository.save(address);
+            addressRepository.save(address);
+        }
 
         URI location = ServletUriComponentsBuilder
                 .fromCurrentContextPath().path("/users/{username}")
