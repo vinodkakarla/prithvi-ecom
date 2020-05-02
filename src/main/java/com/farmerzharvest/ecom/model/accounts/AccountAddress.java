@@ -1,9 +1,7 @@
 package com.farmerzharvest.ecom.model.accounts;
 
 import com.farmerzharvest.ecom.model.BaseEntity;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -11,6 +9,8 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class AccountAddress extends BaseEntity {
 
     @Id

@@ -7,8 +7,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class AccountAddress {
+public class AccountAddressDTO {
 
+    private Long accountAddressId;
+    private Long userId;
     private String addressLine1;
     private String addressLine2;
     private String city;

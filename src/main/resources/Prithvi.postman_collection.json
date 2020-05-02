@@ -1,0 +1,241 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Prithvi",
+		"_postman_id": "6ebad6a0-b56a-54a5-df77-df789aef6b57",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User SignUp",
+			"request": {
+				"url": "http://localhost:8080/api/auth/signup",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"firstname\":\"Vinod\", \"lastname\": \"Kakarla\",\"email\":\"kvinod3@gmail.com\",\"password\":\"qwerty\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "User SignIn",
+			"request": {
+				"url": "http://localhost:8080/api/auth/signin",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"usernameOrEmail\":\"kvinod1@gmail.com\",\"password\":\"qwerty\"}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "User - Check Logged User",
+			"request": {
+				"url": "http://localhost:8080/api/user/me",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc5MTI0NzY0LCJleHAiOjE1NzkxMjY1NjR9.n5lfR7GZ8Orwpp_i1RzEEXYP2ObJWgUV-1FCOUdYC8nULEy22t1WLb98ryzfmozkwhdGGk3e-S8aOp36q1JiDQ",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Orders - My Orders",
+			"request": {
+				"url": "http://localhost:8080/api/user/me",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTc5MTI0NzY0LCJleHAiOjE1NzkxMjY1NjR9.n5lfR7GZ8Orwpp_i1RzEEXYP2ObJWgUV-1FCOUdYC8nULEy22t1WLb98ryzfmozkwhdGGk3e-S8aOp36q1JiDQ",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Products - By Category",
+			"request": {
+				"url": "http://localhost:8080/products/by-category/1",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Products - List",
+			"request": {
+				"url": "http://localhost:8080/products",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Admin-listAll",
+			"request": {
+				"url": "http://localhost:8080/api/account-address/list-all",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTg4NDEzMTcwLCJleHAiOjE1ODg0MTQ5NzB9.6gTYyZgQeXcSExNAy5Fvu4RPeRk49nuH3AuHdm9Tq9K2ae-rIuPbohpzpSmGrg3-zXp3NxeZOvIsUDHGhUIjRg",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "AccountAddress - User-list my addresses",
+			"request": {
+				"url": "http://localhost:8080/api/account-address/my-addresses",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTg4NDEzMTcwLCJleHAiOjE1ODg0MTQ5NzB9.6gTYyZgQeXcSExNAy5Fvu4RPeRk49nuH3AuHdm9Tq9K2ae-rIuPbohpzpSmGrg3-zXp3NxeZOvIsUDHGhUIjRg",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "AccountAddress - Save my address",
+			"request": {
+				"url": "http://localhost:8080/api/account-address/my-address",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTg4NDEzMTcwLCJleHAiOjE1ODg0MTQ5NzB9.6gTYyZgQeXcSExNAy5Fvu4RPeRk49nuH3AuHdm9Tq9K2ae-rIuPbohpzpSmGrg3-zXp3NxeZOvIsUDHGhUIjRg",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"accountAddressId\": 1,\n        \"userId\": 2,\n        \"addressLine1\": \"B-Line1\",\n        \"addressLine2\": \"Line2\",\n        \"city\": \"Hyd\",\n        \"state\": \"AP\",\n        \"pinCode\": 500072\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "AccountAddress - Admin  - Save address",
+			"request": {
+				"url": "http://localhost:8080/api/account-address/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTg4NDEzMTcwLCJleHAiOjE1ODg0MTQ5NzB9.6gTYyZgQeXcSExNAy5Fvu4RPeRk49nuH3AuHdm9Tq9K2ae-rIuPbohpzpSmGrg3-zXp3NxeZOvIsUDHGhUIjRg",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"accountAddressId\": 1,\n        \"userId\": 2,\n        \"addressLine1\": \"B-Line1\",\n        \"addressLine2\": \"Line2\",\n        \"city\": \"Hyd\",\n        \"state\": \"AP\",\n        \"pinCode\": 500072\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "AccountAddress - Update my address",
+			"request": {
+				"url": "http://localhost:8080/api/account-address/my-address",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTg4NDEzMTcwLCJleHAiOjE1ODg0MTQ5NzB9.6gTYyZgQeXcSExNAy5Fvu4RPeRk49nuH3AuHdm9Tq9K2ae-rIuPbohpzpSmGrg3-zXp3NxeZOvIsUDHGhUIjRg",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"accountAddressId\": 1,\n        \"userId\": 2,\n        \"addressLine1\": \"BC-Line1\",\n        \"addressLine2\": \"Line2\",\n        \"city\": \"Hyd\",\n        \"state\": \"AP\",\n        \"pinCode\": 500072\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "AccountAddress - Admin  - Update address",
+			"request": {
+				"url": "http://localhost:8080/api/account-address/",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTg4NDEzMTcwLCJleHAiOjE1ODg0MTQ5NzB9.6gTYyZgQeXcSExNAy5Fvu4RPeRk49nuH3AuHdm9Tq9K2ae-rIuPbohpzpSmGrg3-zXp3NxeZOvIsUDHGhUIjRg",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"accountAddressId\": 1,\n        \"userId\": 2,\n        \"addressLine1\": \"BC-Line1\",\n        \"addressLine2\": \"Line2\",\n        \"city\": \"Hyd\",\n        \"state\": \"AP\",\n        \"pinCode\": 500072\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

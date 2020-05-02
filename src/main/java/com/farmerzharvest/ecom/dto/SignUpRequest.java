@@ -22,7 +22,7 @@ public class SignUpRequest {
     @Size(min = 6, max = 20)
     private String password;
 
-    private AccountAddress address;
+    private AccountAddressDTO address;
 
     public String getFirstname() {
         return firstname;
@@ -64,11 +64,11 @@ public class SignUpRequest {
         this.password = password;
     }
 
-    public AccountAddress getAddress() {
+    public AccountAddressDTO getAddress() {
         return address;
     }
 
-    public void setAddress(AccountAddress address) {
+    public void setAddress(AccountAddressDTO address) {
         this.address = address;
     }
 }
