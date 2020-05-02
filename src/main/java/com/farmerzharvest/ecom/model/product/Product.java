@@ -29,5 +29,22 @@ public class Product extends BaseEntity {
     @OneToMany
     @JoinColumn(name = "product_id")
     private Collection<ProductUnitPrice> productUnits;
+
+    @Override
+    public int hashCode() {
+        return Long.toString(id).hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Product) {
+            Long id1 = this.id;
+            Long id2 = ((Product) obj).id;
+            if (id1 != null && id2 != null) {
+                return id1.floatValue() == id2.floatValue();
+            }
+        }
+        return false;
+    }
 }
 

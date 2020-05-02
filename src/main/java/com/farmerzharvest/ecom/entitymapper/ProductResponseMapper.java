@@ -25,6 +25,7 @@ public class ProductResponseMapper implements Function<Product, ProductResponse>
         if (product.getProductUnits() != null) {
             for (ProductUnitPrice productUnit : product.getProductUnits()) {
                 ProductResponse.UnitDetail unitDetail = ProductResponse.UnitDetail.builder()
+                        .id(productUnit.getProductUnit().getId())
                         .unitQuantity(productUnit.getProductUnit().getUnitQuantity())
                         .unitType(productUnit.getProductUnit().getUnitType())
                         .pricePerUnit(productUnit.getUnitPrice())

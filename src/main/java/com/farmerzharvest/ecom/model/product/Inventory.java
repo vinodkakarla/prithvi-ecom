@@ -21,9 +21,9 @@ public class Inventory extends BaseEntity {
     @PrimaryKeyJoinColumn
     private Product product;
 
-    private Long totalQuantity;
+    private Float totalQuantity;
 
-    private float unitPrice;
+    private String type;
 
     private boolean isActive;
 }

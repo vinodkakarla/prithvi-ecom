@@ -49,12 +49,22 @@ public class ProductServiceImpl implements ProductService {
                 .collect(Collectors.toList());
     }
 
+    @Override
     public ProductResponse getProduct(Long productId) {
         Optional<Product> product = productRepository.findById(productId);
         if (!product.isPresent()) {
             throw new RuntimeException("No product with the given identifier");
         }
         return mapperFunction.apply(product.get());
+    }
+
+    @Override
+    public List<ProductResponse> searchProductsByCatNameOrProdName(String searchString) {
+        List<Product> productsBySearch = productRepository.findByCategory_categoryNameContainingIgnoreCase(searchString);
+        productsBySearch.addAll(productRepository.findByNameContainingIgnoreCase(searchString));
+        return productsBySearch.stream().distinct()
+                .map(mapperFunction::apply)
+                .collect(Collectors.toList());
     }
 
 }

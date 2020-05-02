@@ -17,7 +17,7 @@ public class ProductResponse {
     private String description;
     private String imageUrl;
     private String category;
-    private Long totalQuantity;
+    private Float totalQuantity;
     private boolean isActive;
     private Collection<UnitDetail> unitDetails;
 
@@ -25,6 +25,7 @@ public class ProductResponse {
     @Getter
     @Builder
     public static class UnitDetail {
+        private Long id;
         private String unitType;
         private Long unitQuantity;
         private float pricePerUnit;

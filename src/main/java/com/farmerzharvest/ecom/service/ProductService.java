@@ -12,4 +12,6 @@ public interface ProductService {
     List<ProductResponse> getProductsByCategoryName(String categoryName);
 
     ProductResponse getProduct(Long productId);
+
+    List<ProductResponse> searchProductsByCatNameOrProdName(String searchString);
 }

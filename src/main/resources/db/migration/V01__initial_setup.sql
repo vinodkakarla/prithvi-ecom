@@ -159,8 +159,8 @@ CREATE TABLE `inventory` (
   `updated_at` datetime DEFAULT NULL,
   `updated_by` bigint(20) DEFAULT NULL,
   `is_active` bit(1) NOT NULL,
-  `total_quantity` bigint(20) DEFAULT NULL,
-  `unit_price` float NOT NULL,
+  `total_quantity` float DEFAULT NULL,
+  `type` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

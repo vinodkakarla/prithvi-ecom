@@ -41,4 +41,10 @@ public class ProductControllerImpl implements ProductController {
         return productService.getProductsByCategoryName(categoryName);
     }
 
+    @GetMapping("/search-by-name/{prodOrCatName}")
+    @Override
+    public List<ProductResponse> searchByProdOrCatName(@PathVariable String prodOrCatName) {
+        return productService.searchProductsByCatNameOrProdName(prodOrCatName);
+    }
+
 }

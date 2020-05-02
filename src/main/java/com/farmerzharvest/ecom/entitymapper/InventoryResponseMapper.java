@@ -28,7 +28,7 @@ public class InventoryResponseMapper {
                 //.minQuantity(inventory.getProduct().getProductUnits().getUnitQuantity())
                 .imageUrl(inventory.getProduct().getImageUrl())
                 .productCategory(inventory.getProduct().getCategory().getCategoryName())
-                .unitPrice(inventory.getUnitPrice())
+                .type(inventory.getType())
                 .totalAvailableUnits(inventory.getTotalQuantity())
                 .build();
     }
