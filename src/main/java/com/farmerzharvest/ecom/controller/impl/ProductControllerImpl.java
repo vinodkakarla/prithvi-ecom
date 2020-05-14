@@ -1,6 +1,7 @@
 package com.farmerzharvest.ecom.controller.impl;
 
 import com.farmerzharvest.ecom.controller.ProductController;
+import com.farmerzharvest.ecom.dto.ProductAddUpdateRequest;
 import com.farmerzharvest.ecom.dto.ProductResponse;
 import com.farmerzharvest.ecom.service.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -45,6 +46,11 @@ public class ProductControllerImpl implements ProductController {
     @Override
     public List<ProductResponse> searchByProdOrCatName(@PathVariable String prodOrCatName) {
         return productService.searchProductsByCatNameOrProdName(prodOrCatName);
+    }
+
+    @Override
+    public ProductResponse addProduct(ProductAddUpdateRequest request) {
+        return null;
     }
 
 }

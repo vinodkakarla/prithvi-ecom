@@ -15,12 +15,11 @@ public class InventoryResponse {
     @Setter
     @Builder
     public static class InventoryItem {
+        private Long inventoryId;
         private Long productId;
         private String productName;
         private String imageUrl;
         private String productCategory;
-        private String unitType;
-        private Long minQuantity;
         private String type;
         private Float totalAvailableUnits;
     }

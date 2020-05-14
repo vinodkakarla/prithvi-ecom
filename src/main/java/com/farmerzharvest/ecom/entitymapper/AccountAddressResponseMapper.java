@@ -18,7 +18,7 @@ public class AccountAddressResponseMapper {
                 .build();
     }
 
-    public AccountAddress mapToAccountAddress(AccountAddressDTO  addressDTO, User account) {
+    public AccountAddress mapToAccountAddress(AccountAddressDTO addressDTO, User account) {
         return AccountAddress.builder()
                 .account(account)
                 .id(addressDTO.getAccountAddressId())

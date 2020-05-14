@@ -1,7 +1,8 @@
 package com.farmerzharvest.ecom.service.impl;
 
+import com.farmerzharvest.ecom.dto.ProductAddUpdateRequest;
 import com.farmerzharvest.ecom.dto.ProductResponse;
-import com.farmerzharvest.ecom.entitymapper.ProductResponseMapper;
+import com.farmerzharvest.ecom.entitymapper.ProductEntitiesMapper;
 import com.farmerzharvest.ecom.model.product.Product;
 import com.farmerzharvest.ecom.repository.ProductRepository;
 import com.farmerzharvest.ecom.service.ProductService;
@@ -9,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -18,18 +20,21 @@ import java.util.stream.Collectors;
 public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
-    private ProductResponseMapper mapperFunction;
+    private ProductEntitiesMapper.ProductResponseMapper respMapperFunction;
+    private ProductEntitiesMapper.ProductAddUpdateRequestMapper reqMapperFunction;
 
     @PostConstruct
     public void setup() {
-        mapperFunction = new ProductResponseMapper();
+        ProductEntitiesMapper entitiesMapper = new ProductEntitiesMapper();
+        respMapperFunction = entitiesMapper.new ProductResponseMapper();
+        reqMapperFunction = entitiesMapper.new ProductAddUpdateRequestMapper();
     }
 
 
     public List<ProductResponse> getProducts() {
         List<Product> products = productRepository.findAll();
         return products.stream()
-                .map(mapperFunction::apply)
+                .map(respMapperFunction::apply)
                 .collect(Collectors.toList());
     }
 
@@ -37,7 +42,7 @@ public class ProductServiceImpl implements ProductService {
     public List<ProductResponse> getProductsByCategoryId(int categoryId) {
         List<Product> products = productRepository.findAllByCategory_id((long) categoryId);
         return products.stream()
-                .map(mapperFunction::apply)
+                .map(respMapperFunction::apply)
                 .collect(Collectors.toList());
     }
 
@@ -45,7 +50,7 @@ public class ProductServiceImpl implements ProductService {
     public List<ProductResponse> getProductsByCategoryName(String categoryName) {
         List<Product> products = productRepository.findAllByCategory_categoryName(categoryName);
         return products.stream()
-                .map(mapperFunction::apply)
+                .map(respMapperFunction::apply)
                 .collect(Collectors.toList());
     }
 
@@ -55,16 +60,31 @@ public class ProductServiceImpl implements ProductService {
         if (!product.isPresent()) {
             throw new RuntimeException("No product with the given identifier");
         }
-        return mapperFunction.apply(product.get());
+        return respMapperFunction.apply(product.get());
     }
 
     @Override
     public List<ProductResponse> searchProductsByCatNameOrProdName(String searchString) {
-        List<Product> productsBySearch = productRepository.findByCategory_categoryNameContainingIgnoreCase(searchString);
+        List<Product> productsBySearch =
+                productRepository.findByCategory_categoryNameContainingIgnoreCase(searchString);
         productsBySearch.addAll(productRepository.findByNameContainingIgnoreCase(searchString));
         return productsBySearch.stream().distinct()
-                .map(mapperFunction::apply)
+                .map(respMapperFunction::apply)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public ProductResponse addProduct(ProductAddUpdateRequest request) {
+        Product product = reqMapperFunction.apply(request);
+        product.setCreatedAt(LocalDateTime.now());
+        return respMapperFunction.apply(productRepository.save(product));
+    }
+
+    @Override
+    public ProductResponse updateProduct(ProductAddUpdateRequest request) {
+        Product product = reqMapperFunction.apply(request);
+        product.setId(request.getProductId());
+        return respMapperFunction.apply(productRepository.save(product));
     }
 
 }

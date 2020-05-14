@@ -1,8 +1,11 @@
 package com.farmerzharvest.ecom.controller;
 
+import com.farmerzharvest.ecom.dto.ProductAddUpdateRequest;
 import com.farmerzharvest.ecom.dto.ProductResponse;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -20,4 +23,7 @@ public interface ProductController {
 
     @GetMapping("/search-by-name/{prodOrCatName}")
     List<ProductResponse> searchByProdOrCatName(@PathVariable String categoryName);
+
+    @PostMapping("/add-product")
+    ProductResponse addProduct(@RequestBody ProductAddUpdateRequest request);
 }

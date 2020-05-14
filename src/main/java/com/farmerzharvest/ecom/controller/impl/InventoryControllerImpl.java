@@ -1,6 +1,7 @@
 package com.farmerzharvest.ecom.controller.impl;
 
 import com.farmerzharvest.ecom.controller.InventoryController;
+import com.farmerzharvest.ecom.dto.InventoryAddUpdateRequest;
 import com.farmerzharvest.ecom.dto.InventoryResponse;
 import com.farmerzharvest.ecom.service.InventoryService;
 import lombok.RequiredArgsConstructor;
@@ -38,6 +39,21 @@ public class InventoryControllerImpl implements InventoryController {
     public InventoryResponse getInventoryByProductId(@RequestParam(required = true) Long productId) {
         log.debug("Received request to get all inventory by product id: {}", productId);
         return inventoryService.getInventoryByProductId(productId);
+    }
+
+    @Override
+    public InventoryResponse.InventoryItem addInventoryItem(InventoryAddUpdateRequest request) {
+        return inventoryService.addInventoryItem(request);
+    }
+
+    @Override
+    public InventoryResponse.InventoryItem updateInventoryItem(InventoryAddUpdateRequest request) {
+        return inventoryService.updateInventoryItem(request);
+    }
+
+    @Override
+    public void deleteInventoryItem(long inventoryId) {
+        inventoryService.deleteInventoryItem(inventoryId);
     }
 
 }

@@ -8,12 +8,14 @@ import com.farmerzharvest.ecom.model.accounts.User;
 import com.farmerzharvest.ecom.repository.UserRepository;
 import com.farmerzharvest.ecom.security.CurrentUser;
 import com.farmerzharvest.ecom.security.UserPrincipal;
+import com.farmerzharvest.ecom.service.AccountService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
@@ -23,6 +25,8 @@ public class AccountController {
     private static final Logger logger = LoggerFactory.getLogger(AccountController.class);
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private AccountService accountService;
 
     //hasAuthority(‘ROLE_ADMIN') is similar to hasRole(‘ADMIN') because the ‘ROLE_‘ prefix gets added automatically
     @GetMapping("/user/me")
@@ -50,6 +54,25 @@ public class AccountController {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new ResourceNotFoundException("User", "email", email));
         return getUserProfile(user);
+    }
+
+    @PutMapping("/update-my-profile")
+    @PreAuthorize("hasRole('USER')")
+    public UserProfile updateMyProfile(@CurrentUser UserPrincipal currentUser, UserProfile userProfile) {
+        userProfile.setId(currentUser.getId());
+        return accountService.updateUserProfile(userProfile);
+    }
+
+    @PutMapping("/update-profile-by-admin")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    public UserProfile updateProfileByAdmin(@CurrentUser UserPrincipal currentUser, UserProfile userProfile) {
+        return accountService.updateUserProfile(userProfile);
+    }
+
+    @GetMapping("/get-existing-profiles")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    public List<UserProfile> getExistingUserProfiles(@CurrentUser UserPrincipal currentUser, UserProfile userProfile) {
+        return accountService.getExistingUserProfiles();
     }
 
     private UserProfile getUserProfile(User user) {
