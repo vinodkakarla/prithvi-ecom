@@ -30,8 +30,12 @@ public class AccountController {
 
     //hasAuthority(‘ROLE_ADMIN') is similar to hasRole(‘ADMIN') because the ‘ROLE_‘ prefix gets added automatically
     @GetMapping("/user/me")
-    @PreAuthorize("hasRole('USER')")
+    //@PreAuthorize("hasRole('USER')")
     public UserProfile getCurrentUser(@CurrentUser UserPrincipal currentUser) {
+        if(currentUser==null)  {
+            throw new AppException("Authorization details are missing/invalid with the request ");
+        }
+
         User user = userRepository.findById(currentUser.getId())
                 .orElseThrow(() -> new AppException("Failed to get User details"));
         return getUserProfile(user);

@@ -11,14 +11,15 @@ import java.util.function.Function;
 
 public class ProductUnitPriceMapper {
 
-    public class ResponseMapper implements Function<ProductUnitPrice, ProductResponse.UnitDetail> {
+    public class ResponseMapper implements Function<ProductUnitPrice, ProductUnitPriceAddUpdateRequest> {
 
-        public ProductResponse.UnitDetail apply(ProductUnitPrice unitPrice) {
-            return ProductResponse.UnitDetail.builder()
-                    .id(unitPrice.getId())
-                    .unitQuantity(unitPrice.getProductUnit().getUnitQuantity())
-                    .unitType(unitPrice.getProductUnit().getUnitType())
-                    .pricePerUnit(unitPrice.getUnitPrice())
+        public ProductUnitPriceAddUpdateRequest apply(ProductUnitPrice unitPrice) {
+            return ProductUnitPriceAddUpdateRequest.builder()
+                    .isActive(unitPrice.isActive())
+                    .price(unitPrice.getUnitPrice())
+                    .productUnitPriceId(unitPrice.getId())
+                    .productId(unitPrice.getProduct().getId())
+                    .productUnitId(unitPrice.getProductUnit().getId())
                     .build();
         }
     }

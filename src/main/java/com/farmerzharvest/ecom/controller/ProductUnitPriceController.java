@@ -32,12 +32,17 @@ public class ProductUnitPriceController {
     }
 
     @PostMapping("/add-unit-price")
-    UnitDetail addProductUnitPrice(ProductUnitPriceAddUpdateRequest request) {
+    ProductUnitPriceAddUpdateRequest addProductUnitPrice(ProductUnitPriceAddUpdateRequest request) {
         return unitPriceService.addProductUnitPrice(request);
     }
 
+    @PostMapping("/add-update-unit-prices")
+    List<ProductUnitPriceAddUpdateRequest> addOrUpdateProductUnitPrices(List<ProductUnitPriceAddUpdateRequest> request) {
+        return unitPriceService.addOrUpdateProductUnitPrices(request);
+    }
+
     @PutMapping("/update-unit-price")
-    UnitDetail updateProductUnitPrice(ProductUnitPriceAddUpdateRequest request) {
+    ProductUnitPriceAddUpdateRequest updateProductUnitPrice(ProductUnitPriceAddUpdateRequest request) {
         return unitPriceService.updateProductUnitPrice(request);
     }
 
