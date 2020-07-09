@@ -27,7 +27,7 @@ public class AccountAddressController {
     private AccountAddressService addressService;
 
     @PostMapping("/my-address")
-    @PreAuthorize("hasRole('USER')")
+    //@PreAuthorize("hasRole('USER')")
     public AccountAddressDTO addAccountAddress(@CurrentUser UserPrincipal currentUser,
                                                @Valid @RequestBody AccountAddressDTO addressDTO) {
         addressDTO.setUserId(currentUser.getId());
@@ -41,7 +41,7 @@ public class AccountAddressController {
     }
 
     @PutMapping("/my-address")
-    @PreAuthorize("hasRole('USER')")
+    //@PreAuthorize("hasRole('USER')")
     public AccountAddressDTO updateAccountAddress(@CurrentUser UserPrincipal currentUser,
                                                   @Valid @RequestBody AccountAddressDTO addressDTO) {
         addressDTO.setUserId(currentUser.getId());
@@ -55,13 +55,13 @@ public class AccountAddressController {
     }
 
     @GetMapping("/{addressId}")
-    @PreAuthorize("hasRole('USER')")
+    //@PreAuthorize("hasRole('USER')")
     public AccountAddressDTO getAddressById(long addressId) {
         return addressService.getAccountAddressById(addressId);
     }
 
     @GetMapping("/my-addresses")
-    @PreAuthorize("hasRole('USER')")
+    //@PreAuthorize("hasRole('USER')")
     public List<AccountAddressDTO> listMyAddresses(@CurrentUser UserPrincipal currentUser) {
         return addressService.getAccountAddressByUser(currentUser.getId());
     }
@@ -73,7 +73,7 @@ public class AccountAddressController {
     }
 
     @DeleteMapping("/{addressId}")
-    @PreAuthorize("hasRole('USER')")
+    //@PreAuthorize("hasRole('USER')")
     public void deleteAddress(long addressId) {
         addressService.deleteAccountAddress(addressId);
     }

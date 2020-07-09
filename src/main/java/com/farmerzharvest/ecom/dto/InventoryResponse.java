@@ -13,6 +13,8 @@ public class InventoryResponse {
 
     @Getter
     @Setter
+    @NoArgsConstructor
+    @AllArgsConstructor
     @Builder
     public static class InventoryItem {
         private Long inventoryId;

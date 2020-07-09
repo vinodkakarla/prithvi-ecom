@@ -1,0 +1,1 @@
+ALTER TABLE `product_unit_price` MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;

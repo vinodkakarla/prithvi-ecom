@@ -26,17 +26,17 @@ public class SubscriberController {
     }
 
     @PostMapping("/add-subscriber")
-    Subscriber addSubscriber(Subscriber request) {
+    Subscriber addSubscriber(@RequestBody Subscriber request) {
         return subscriberService.addSubscriber(request);
     }
 
     @PutMapping("/update-subscriber")
-    Subscriber updateSubscriber(Subscriber request) {
+    Subscriber updateSubscriber(@RequestBody Subscriber request) {
         return subscriberService.updateSubscriber(request);
     }
 
-    @DeleteMapping("/delete-subscriber")
-    void deleteSubscriber(long subscriberId) {
+    @DeleteMapping("/delete-subscriber/{subscriberId}")
+    void deleteSubscriber(@PathVariable(value = "subscriberId") long subscriberId) {
         subscriberService.deleteSubscriber(subscriberId);
     }
 

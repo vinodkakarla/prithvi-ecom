@@ -61,7 +61,7 @@ public class AccountController {
     }
 
     @PutMapping("/update-my-profile")
-    @PreAuthorize("hasRole('USER')")
+    //@PreAuthorize("hasRole('USER')")
     public UserProfile updateMyProfile(@CurrentUser UserPrincipal currentUser, UserProfile userProfile) {
         userProfile.setId(currentUser.getId());
         return accountService.updateUserProfile(userProfile);

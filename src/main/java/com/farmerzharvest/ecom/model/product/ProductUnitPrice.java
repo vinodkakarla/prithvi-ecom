@@ -12,6 +12,7 @@ import javax.persistence.*;
 public class ProductUnitPrice extends BaseEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private float unitPrice;
     @Column(nullable = false, columnDefinition = "boolean default true")
