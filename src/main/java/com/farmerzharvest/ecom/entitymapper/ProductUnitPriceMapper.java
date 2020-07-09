@@ -30,6 +30,10 @@ public class ProductUnitPriceMapper {
         public ProductUnitPrice apply(ProductUnitPriceAddUpdateRequest request) {
             ProductUnitPrice unitPrice = new ProductUnitPrice();
 
+            if(request.getProductUnitPriceId()!=null && request.getProductUnitPriceId()!=0){
+                unitPrice.setId(request.getProductUnitPriceId());
+            }
+
             unitPrice.setUpdatedAt(LocalDateTime.now());
             unitPrice.setActive(request.getIsActive());
             unitPrice.setUnitPrice(request.getPrice());
