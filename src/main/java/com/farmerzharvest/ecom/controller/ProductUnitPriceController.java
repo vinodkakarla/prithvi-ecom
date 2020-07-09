@@ -37,7 +37,7 @@ public class ProductUnitPriceController {
     }
 
     @PostMapping("/add-update-unit-prices")
-    List<ProductUnitPriceAddUpdateRequest> addOrUpdateProductUnitPrices(List<ProductUnitPriceAddUpdateRequest> request) {
+    List<ProductUnitPriceAddUpdateRequest> addOrUpdateProductUnitPrices(@RequestBody List<ProductUnitPriceAddUpdateRequest> request) {
         return unitPriceService.addOrUpdateProductUnitPrices(request);
     }
 
