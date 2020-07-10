@@ -28,6 +28,7 @@ public class ProductResponse {
         private Long id;
         private String unitType;
         private Long unitQuantity;
+        private Long unitId;
         private float pricePerUnit;
     }
 }

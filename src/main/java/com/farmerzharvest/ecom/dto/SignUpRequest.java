@@ -13,6 +13,8 @@ public class SignUpRequest {
 
     private String username;
 
+    private String phoneNumber;
+
     @NotBlank
     @Size(max = 255)
     @Email
@@ -46,6 +48,14 @@ public class SignUpRequest {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getEmail() {

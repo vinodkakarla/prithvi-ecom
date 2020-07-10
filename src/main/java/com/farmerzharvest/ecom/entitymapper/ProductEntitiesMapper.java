@@ -34,6 +34,7 @@ public class ProductEntitiesMapper {
                             .id(productUnit.getId())
                             .unitQuantity(productUnit.getProductUnit().getUnitQuantity())
                             .unitType(productUnit.getProductUnit().getUnitType())
+                            .unitId(productUnit.getProductUnit().getId())
                             .pricePerUnit(productUnit.getUnitPrice())
                             .build();
                     unitDetails.add(unitDetail);
