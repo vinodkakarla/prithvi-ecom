@@ -4,10 +4,7 @@ import com.farmerzharvest.ecom.model.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -15,6 +12,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 public class Inventory extends BaseEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToOne

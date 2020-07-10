@@ -45,8 +45,12 @@ public class ProductUnitPriceServiceImpl implements ProductUnitPriceService {
                         unit.setCreatedAt(LocalDateTime.now());
                     }
                     unit.setUpdatedAt(LocalDateTime.now());
+                    if(!unit.isActive()) {
+                        unitPriceRepository.delete(unit);
+                    }
                     return unit;
                 })
+                .filter(x -> x.isActive())
                 .collect(Collectors.toList());
         return unitPriceRepository.saveAll(unitPrices).stream()
                 .map(respMapper::apply).collect(Collectors.toList());
