@@ -1,0 +1,1 @@
+ALTER TABLE orders ADD COLUMN slot varchar(255) DEFAULT NULL;
