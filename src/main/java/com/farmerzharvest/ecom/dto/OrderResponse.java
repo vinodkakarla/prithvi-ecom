@@ -35,21 +35,3 @@ public class OrderResponse {
         private float totalUnitAmount;
     }
 }
-
-
-//    private long accountAddressId;
-//    private float totalAmount;
-//    Collection<OrderProductDetail> orderDetails;
-//
-//@Getter
-//@Setter
-//@NoArgsConstructor
-//@AllArgsConstructor
-//@Builder
-//public static class OrderProductDetail {
-//    private long productId;
-//    private long unitId;
-//    private float pricePerUnit;
-//    private short unitQuantity;
-//    private float totalUnitAmount;
-//}

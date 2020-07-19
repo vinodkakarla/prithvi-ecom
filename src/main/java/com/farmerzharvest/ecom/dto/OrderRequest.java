@@ -14,6 +14,8 @@ public class OrderRequest {
     private long accountAddressId;
     private float totalAmount;
     private String pickUp;
+    private String status;
+    private String slot;
 
     @Getter
     @Setter
@@ -25,6 +27,7 @@ public class OrderRequest {
         private long unitId;
         private float pricePerUnit;
         private short unitQuantity;
+        private short productQuantity;
         private float totalUnitAmount;
     }
 }

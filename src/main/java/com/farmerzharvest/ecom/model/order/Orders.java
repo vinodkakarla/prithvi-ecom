@@ -31,8 +31,9 @@ public class Orders extends BaseEntity {
     private LocalDateTime orderDate;
     private String status;
     private String pickUp;
+    private String slot;
 
-    @OneToMany(mappedBy = "orderId")
+    @OneToMany(mappedBy = "orderId", cascade = {CascadeType.PERSIST})
     private List<OrderDetails> orderDetails;
 }
 
