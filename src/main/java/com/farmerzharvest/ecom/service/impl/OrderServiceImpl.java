@@ -17,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -58,8 +59,7 @@ public class OrderServiceImpl implements OrderService {
     public Orders saveOrder(String username, OrderRequest orderRequest) {
         User account = accountRepository.findByUsername(username)
                 .orElseThrow(() -> new ResourceNotFoundException("User", "username", username));
-        Orders order = toOrders(orderRequest);
-        order.setAccount(account);
+        Orders order = toOrders(orderRequest, account);
         return ordersRepository.save(order);
     }
 
@@ -69,13 +69,15 @@ public class OrderServiceImpl implements OrderService {
         return orderResponses;
     }
 
-    private Orders toOrders(OrderRequest orderRequest) {
+    private Orders toOrders(OrderRequest orderRequest, User account) {
         List<OrderDetails> orderDetails = Lists.newArrayList();
-        for (OrderRequest.OrderProductDetail opd : orderRequest.getOrderDetails()) {
-            orderDetails.add(toOrderDetails(opd));
-        }
 
         Orders orders = new Orders();
+        for (OrderRequest.OrderProductDetail opd : orderRequest.getOrderDetails()) {
+            OrderDetails detail = toOrderDetails(opd, account);
+            detail.setOrderId(orders);
+            orderDetails.add(detail);
+        }
 
         orders.setOrderDetails(orderDetails);
         AccountAddress address = addressRepository.findById(orderRequest.getAccountAddressId()).orElseThrow(
@@ -84,11 +86,16 @@ public class OrderServiceImpl implements OrderService {
         orders.setAccountAddress(address);
         orders.setPickUp(orderRequest.getPickUp());
         orders.setTotalAmount(orderRequest.getTotalAmount());
-
+        orders.setCreatedAt(LocalDateTime.now());
+        orders.setCreatedBy(account.getId());
+        orders.setAccount(account);
+        orders.setOrderDate(LocalDateTime.now());
+        orders.setStatus(orderRequest.getStatus());
+        orders.setSlot(orderRequest.getSlot());
         return orders;
     }
 
-    private OrderDetails toOrderDetails(OrderRequest.OrderProductDetail opd) {
+    private OrderDetails toOrderDetails(OrderRequest.OrderProductDetail opd, User account) {
         OrderDetails orderDetail = new OrderDetails();
         orderDetail.setPricePerUnit(opd.getPricePerUnit());
         orderDetail.setTotalUnitAmount(opd.getTotalUnitAmount());
@@ -99,6 +106,8 @@ public class OrderServiceImpl implements OrderService {
         ProductUnits unit = unitsRepository.findById(opd.getUnitId())
                 .orElseThrow(() -> new ResourceNotFoundException("ProductUnits", "unitId", opd.getUnitId()));
         orderDetail.setUnit(unit);
+        orderDetail.setCreatedAt(LocalDateTime.now());
+        orderDetail.setCreatedBy(account.getId());
         return orderDetail;
     }
 
