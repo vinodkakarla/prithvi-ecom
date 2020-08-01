@@ -99,7 +99,7 @@ public class OrderServiceImpl implements OrderService {
         OrderDetails orderDetail = new OrderDetails();
         orderDetail.setPricePerUnit(opd.getPricePerUnit());
         orderDetail.setTotalUnitAmount(opd.getTotalUnitAmount());
-        orderDetail.setUnitQuantity(opd.getUnitQuantity());
+        orderDetail.setUnitQuantity(opd.getProductQuantity());
         Product product = productRepository.findById(opd.getProductId()).orElseThrow(
                 () -> new ResourceNotFoundException("Product", "productId", opd.getProductId()));
         orderDetail.setProduct(product);
