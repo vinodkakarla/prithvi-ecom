@@ -56,6 +56,14 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public OrderResponse updateStatus(long orderId, String status) {
+        Orders order = ordersRepository.findById(orderId)
+                .orElseThrow(() -> new RuntimeException("No order found with the given orderId"));
+        order.setStatus(status);
+        return responseMapper.mapOrderToResponse(order);
+    }
+
+    @Override
     public Orders saveOrder(String username, OrderRequest orderRequest) {
         User account = accountRepository.findByUsername(username)
                 .orElseThrow(() -> new ResourceNotFoundException("User", "username", username));
@@ -65,7 +73,9 @@ public class OrderServiceImpl implements OrderService {
 
     private Collection<OrderResponse> toOrderResponse(Collection<Orders> orders) {
         Collection<OrderResponse> orderResponses =
-                orders.stream().map(responseMapper::mapOrderToResponse).collect(Collectors.toList());
+                orders.stream()
+                    .sorted((x1, x2) -> (x1.getOrderDate()==null||x2.getOrderDate()==null) ? -1 : x2.getOrderDate().compareTo(x1.getOrderDate()))
+                    .map(responseMapper::mapOrderToResponse).collect(Collectors.toList());
         return orderResponses;
     }
 

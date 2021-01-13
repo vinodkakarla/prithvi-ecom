@@ -46,6 +46,12 @@ public class OrderController {
         return orderService.getAllOrders();
     }
 
+    @PostMapping("update-status/{orderId}/{status}")
+    public OrderResponse updateStatus(@PathVariable(value = "orderId") long orderId,
+                                            @PathVariable(value = "status") String status) {
+        return orderService.updateStatus(orderId, status);
+    }
+
     @PostMapping("/")
     public ResponseEntity<?> saveOrder(@Valid @RequestBody OrderRequest orderRequest,
                                        @CurrentUser UserPrincipal currentUser) {

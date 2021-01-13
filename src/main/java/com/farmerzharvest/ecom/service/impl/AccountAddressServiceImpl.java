@@ -54,7 +54,7 @@ public class AccountAddressServiceImpl implements AccountAddressService {
     }
 
     @Override
-    public void deleteAccountAddress(long addressId) {
+    public void deleteAccountAddress(Long addressId) {
         addressRepository.deleteById(addressId);
     }
 

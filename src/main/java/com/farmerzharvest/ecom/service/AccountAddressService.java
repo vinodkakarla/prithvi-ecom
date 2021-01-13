@@ -13,5 +13,5 @@ public interface AccountAddressService {
 
     AccountAddressDTO saveAccountAddress(AccountAddressDTO addressDTO, boolean isAddRequest);
 
-    void deleteAccountAddress(long addressId);
+    void deleteAccountAddress(Long addressId);
 }

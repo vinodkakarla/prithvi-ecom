@@ -74,7 +74,7 @@ public class AccountAddressController {
 
     @DeleteMapping("/{addressId}")
     //@PreAuthorize("hasRole('USER')")
-    public void deleteAddress(long addressId) {
+    public void deleteAddress(@PathVariable Long addressId) {
         addressService.deleteAccountAddress(addressId);
     }
 

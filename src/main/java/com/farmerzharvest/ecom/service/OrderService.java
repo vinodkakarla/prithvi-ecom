@@ -14,5 +14,7 @@ public interface OrderService {
 
     Collection<OrderResponse> getAllOrders();
 
+    OrderResponse updateStatus(long orderId, String status);
+
     Orders saveOrder(String username, OrderRequest orderRequest);
 }

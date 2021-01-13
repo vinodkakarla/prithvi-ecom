@@ -19,6 +19,7 @@ public class OrderResponseMapper {
                 .accountAddressId(order.getAccountAddress().getId())
                 .orderAddress(getorderAddress(order.getAccountAddress()))
                 .userName(order.getAccount().getUsername())
+                .orderDate(order.getOrderDate())
                 .orderId(order.getId())
                 .totalAmount(order.getTotalAmount())
                 .status(order.getStatus())
