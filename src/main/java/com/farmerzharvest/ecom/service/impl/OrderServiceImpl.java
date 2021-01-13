@@ -60,7 +60,7 @@ public class OrderServiceImpl implements OrderService {
         Orders order = ordersRepository.findById(orderId)
                 .orElseThrow(() -> new RuntimeException("No order found with the given orderId"));
         order.setStatus(status);
-        return responseMapper.mapOrderToResponse(order);
+        return responseMapper.mapOrderToResponse(ordersRepository.save(order));
     }
 
     @Override
