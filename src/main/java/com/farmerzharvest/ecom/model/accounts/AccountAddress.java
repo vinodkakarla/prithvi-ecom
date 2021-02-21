@@ -21,6 +21,8 @@ public class AccountAddress extends BaseEntity {
     @JoinColumn(name = "account_id")
     private User account;
 
+    private String name;
+    private boolean isActive;
     private String addressLine1;
     private String addressLine2;
     private String city;

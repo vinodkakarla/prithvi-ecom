@@ -49,7 +49,7 @@ public class OrderResponseMapper {
     }
 
     private String getorderAddress(AccountAddress address) {
-        return address.getAddressLine1() + "\n" + address.getAddressLine1() + "\n"
+        return address.getAddressLine1() + "\n" + address.getAddressLine2() + "\n"
                 + address.getCity() + "\n" + address.getState()
                 + " - " + address.getPinCode();
     }

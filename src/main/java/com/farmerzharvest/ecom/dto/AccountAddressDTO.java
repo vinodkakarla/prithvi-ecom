@@ -9,8 +9,10 @@ import lombok.Setter;
 @Builder
 public class AccountAddressDTO {
 
+    private String name;
     private Long accountAddressId;
     private Long userId;
+    private boolean isActive;
     private String addressLine1;
     private String addressLine2;
     private String city;

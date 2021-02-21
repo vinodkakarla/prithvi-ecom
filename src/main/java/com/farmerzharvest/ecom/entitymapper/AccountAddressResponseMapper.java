@@ -13,8 +13,10 @@ public class AccountAddressResponseMapper {
                 .addressLine1(accountAddress.getAddressLine1())
                 .addressLine2(accountAddress.getAddressLine2())
                 .city(accountAddress.getCity())
+                .name(accountAddress.getName())
                 .pinCode(accountAddress.getPinCode())
                 .state(accountAddress.getState())
+                .isActive(accountAddress.isActive())
                 .build();
     }
 
@@ -24,6 +26,8 @@ public class AccountAddressResponseMapper {
                 .id(addressDTO.getAccountAddressId())
                 .addressLine1(addressDTO.getAddressLine1())
                 .addressLine2(addressDTO.getAddressLine2())
+                .name(addressDTO.getName())
+                .isActive(addressDTO.isActive())
                 .city(addressDTO.getCity())
                 .pinCode(addressDTO.getPinCode())
                 .state(addressDTO.getState())
