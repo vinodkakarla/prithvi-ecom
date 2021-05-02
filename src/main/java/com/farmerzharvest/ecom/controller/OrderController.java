@@ -60,7 +60,7 @@ public class OrderController {
         if (order == null) {
             return new ResponseEntity<String>("Order creation failed.", HttpStatus.INTERNAL_SERVER_ERROR);
         } else {
-            return new ResponseEntity<String>("Order created successfully", HttpStatus.OK);
+            return new ResponseEntity<Long>(order.getId(), HttpStatus.OK);
         }
     }
 
