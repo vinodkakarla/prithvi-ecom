@@ -26,4 +26,7 @@ public interface ProductController {
 
     @PostMapping("/add-product")
     ProductResponse addProduct(@RequestBody ProductAddUpdateRequest request);
+
+    @PostMapping("/update-product")
+    ProductResponse updateProduct(@RequestBody ProductAddUpdateRequest request);
 }

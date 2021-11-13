@@ -25,7 +25,8 @@ public class ProductEntitiesMapper {
                     .orderBy(product.getOrderBy())
                     .imageUrl(product.getImageUrl())
                     .category(product.getCategory().getCategoryName())
-                    .totalQuantity(product.getInventory() != null ? product.getInventory().getTotalQuantity() : 0)
+                    .totalQuantity(product.getInventory() != null && product.getInventory().getTotalQuantity() != null
+                            ? product.getInventory().getTotalQuantity() : 0)
                     .isActive(product.isActive());
 
             Collection<ProductResponse.UnitDetail> unitDetails = Lists.newArrayList();

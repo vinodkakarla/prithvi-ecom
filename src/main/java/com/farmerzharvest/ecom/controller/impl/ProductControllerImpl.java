@@ -50,7 +50,12 @@ public class ProductControllerImpl implements ProductController {
 
     @Override
     public ProductResponse addProduct(ProductAddUpdateRequest request) {
-        return null;
+        return productService.addProduct(request);
+    }
+
+    @Override
+    public ProductResponse updateProduct(ProductAddUpdateRequest request) {
+        return productService.updateProduct(request);
     }
 
 }
