@@ -14,10 +14,12 @@ public class ProductResponse {
 
     private Long id;
     private String name;
+    private String subName;
     private String description;
     private String imageUrl;
     private String category;
     private Float totalQuantity;
+    private Integer orderBy;
     private boolean isActive;
     private Collection<UnitDetail> unitDetails;
 
@@ -30,6 +32,7 @@ public class ProductResponse {
         private Long unitQuantity;
         private Long unitId;
         private float pricePerUnit;
+        private Float mrp;
     }
 }
 

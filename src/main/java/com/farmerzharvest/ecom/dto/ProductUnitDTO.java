@@ -11,4 +11,5 @@ public class ProductUnitDTO {
     private Long productUnitId;
     private Long unitQuantity;
     private String unitType;
+    private Integer orderBy;
 }

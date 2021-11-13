@@ -21,6 +21,8 @@ public class ProductEntitiesMapper {
                     .id(product.getId())
                     .description(product.getDescription())
                     .name(product.getName())
+                    .subName(product.getSubName())
+                    .orderBy(product.getOrderBy())
                     .imageUrl(product.getImageUrl())
                     .category(product.getCategory().getCategoryName())
                     .totalQuantity(product.getInventory() != null ? product.getInventory().getTotalQuantity() : 0)
@@ -36,6 +38,7 @@ public class ProductEntitiesMapper {
                             .unitType(productUnit.getProductUnit().getUnitType())
                             .unitId(productUnit.getProductUnit().getId())
                             .pricePerUnit(productUnit.getUnitPrice())
+                            .mrp(productUnit.getMrp())
                             .build();
                     unitDetails.add(unitDetail);
                 }
@@ -57,6 +60,8 @@ public class ProductEntitiesMapper {
             product.setImageUrl(request.getImageUrl());
             product.setActive(request.getIsActive());
             product.setUpdatedAt(LocalDateTime.now());
+            product.setSubName(request.getSubName());
+            product.setOrderBy(request.getOrderBy());
 
             Category category = new Category();
             category.setId(request.getCategoryId());

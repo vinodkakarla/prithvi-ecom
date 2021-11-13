@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface ProductUnitsRepository extends JpaRepository<ProductUnits, Long> {
 
-    @Query("SELECT DISTINCT a.unitType FROM ProductUnits a")
+    @Query("SELECT DISTINCT a.unitType FROM ProductUnits a ORDER BY orderBy")
     List<String> findDistinctUnitType();
 }

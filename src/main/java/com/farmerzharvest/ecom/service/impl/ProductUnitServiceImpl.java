@@ -6,6 +6,7 @@ import com.farmerzharvest.ecom.model.product.ProductUnits;
 import com.farmerzharvest.ecom.repository.ProductUnitsRepository;
 import com.farmerzharvest.ecom.service.ProductUnitService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -27,7 +28,7 @@ public class ProductUnitServiceImpl implements ProductUnitService {
 
     @Override
     public List<ProductUnitDTO> getProductUnits() {
-        return productUnitsRepository.findAll().stream()
+        return productUnitsRepository.findAll(Sort.by("orderBy").ascending()).stream()
                 .map(mapper::mapProductModelToDTO)
                 .collect(Collectors.toList());
     }

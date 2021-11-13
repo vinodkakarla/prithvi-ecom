@@ -16,9 +16,11 @@ public class Product extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private String subName;
     private String description;
     private String imageUrl;
     private boolean isActive;
+    private Integer orderBy;
     @OneToOne
     @JoinColumn(name = "category_id")
     private Category category;

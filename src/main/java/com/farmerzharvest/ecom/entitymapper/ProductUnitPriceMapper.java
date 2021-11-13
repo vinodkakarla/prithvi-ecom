@@ -17,6 +17,7 @@ public class ProductUnitPriceMapper {
             return ProductUnitPriceAddUpdateRequest.builder()
                     .isActive(unitPrice.isActive())
                     .price(unitPrice.getUnitPrice())
+                    .mrp(unitPrice.getMrp())
                     .productUnitPriceId(unitPrice.getId())
                     .productId(unitPrice.getProduct().getId())
                     .productUnitId(unitPrice.getProductUnit().getId())
@@ -37,6 +38,7 @@ public class ProductUnitPriceMapper {
             unitPrice.setUpdatedAt(LocalDateTime.now());
             unitPrice.setActive(request.getIsActive());
             unitPrice.setUnitPrice(request.getPrice());
+            unitPrice.setMrp(request.getMrp());
 
             Product product = new Product();
             product.setId(request.getProductId());

@@ -7,6 +7,7 @@ import com.farmerzharvest.ecom.model.product.Product;
 import com.farmerzharvest.ecom.repository.ProductRepository;
 import com.farmerzharvest.ecom.service.ProductService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -32,7 +33,7 @@ public class ProductServiceImpl implements ProductService {
 
 
     public List<ProductResponse> getProducts() {
-        List<Product> products = productRepository.findAll();
+        List<Product> products = productRepository.findAll(Sort.by("orderBy").ascending());
         return products.stream()
                 .map(respMapperFunction::apply)
                 .collect(Collectors.toList());
@@ -40,7 +41,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<ProductResponse> getProductsByCategoryId(int categoryId) {
-        List<Product> products = productRepository.findAllByCategory_id((long) categoryId);
+        List<Product> products = productRepository.findAllByCategory_id((long) categoryId, Sort.by("orderBy").ascending());
         return products.stream()
                 .map(respMapperFunction::apply)
                 .collect(Collectors.toList());
@@ -66,8 +67,8 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<ProductResponse> searchProductsByCatNameOrProdName(String searchString) {
         List<Product> productsBySearch =
-                productRepository.findByCategory_categoryNameContainingIgnoreCase(searchString);
-        productsBySearch.addAll(productRepository.findByNameContainingIgnoreCase(searchString));
+                productRepository.findByCategory_categoryNameContainingIgnoreCase(searchString, Sort.by("orderBy").ascending());
+        productsBySearch.addAll(productRepository.findByNameContainingIgnoreCase(searchString, Sort.by("orderBy").ascending()));
         return productsBySearch.stream().distinct()
                 .map(respMapperFunction::apply)
                 .collect(Collectors.toList());

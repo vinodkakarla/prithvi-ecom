@@ -15,6 +15,7 @@ public class ProductUnitPrice extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private float unitPrice;
+    private Float mrp;
     @Column(nullable = false, columnDefinition = "boolean default true")
     private boolean isActive;
 

@@ -19,4 +19,5 @@ public class ProductUnits extends BaseEntity {
     private Long id;
     private String unitType;
     private Long unitQuantity;
+    private Integer orderBy;
 }

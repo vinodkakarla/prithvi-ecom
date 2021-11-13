@@ -8,6 +8,7 @@ public class ProductUnitsMapper {
         ProductUnits unitModel = new ProductUnits();
         unitModel.setUnitQuantity(unitDTO.getUnitQuantity());
         unitModel.setUnitType(unitDTO.getUnitType());
+        unitModel.setOrderBy(unitDTO.getOrderBy());
         return unitModel;
     }
 
@@ -16,6 +17,7 @@ public class ProductUnitsMapper {
                 .productUnitId(unit.getId())
                 .unitQuantity(unit.getUnitQuantity())
                 .unitType(unit.getUnitType())
+                .orderBy(unit.getOrderBy())
                 .build();
     }
 }
